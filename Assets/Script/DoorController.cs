@@ -5,8 +5,11 @@ using UnityEngine.InputSystem;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] float Speed;
-    static DoorController Vicina;
+    [Header("Impostazioni Velocità")]
+    [SerializeField] private float baseSpeed = 8f;
+    [SerializeField] private float acceleration = 0.2f;
+    [SerializeField] private float maxSpeed = 25f;
+    static DoorController NearestDoor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,12 +19,19 @@ public class DoorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0, 0, -4) * Speed * Time.deltaTime;
+        //Calcola la velocità in base al tempo trascorso dall'inizio del livello
+        float currentSpeed = baseSpeed + (Time.timeSinceLevelLoad * acceleration);
 
-        if (Vicina == null || transform.position.z < Vicina.transform.position.z)
-            Vicina = this;
+        //Limita la velocità massima
+        currentSpeed = Mathf.Min(currentSpeed, maxSpeed);
 
-        if (Vicina != this) return;
+        //Vector3.back è equivalente a new Vector3(0, 0, -1), quindi sposta l'oggetto indietro lungo l'asse Z
+        transform.position += Vector3.back * currentSpeed * Time.deltaTime;
+
+        if (NearestDoor == null || transform.position.z < NearestDoor.transform.position.z)
+            NearestDoor = this;
+
+        if (NearestDoor != this) return;
 
         if (gameObject.name.Contains("Yellow") && Input.GetKeyDown(KeyCode.Y)) Destroy(gameObject);
         if (gameObject.name.Contains("Red") && Input.GetKeyDown(KeyCode.R)) Destroy(gameObject);
