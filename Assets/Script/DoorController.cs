@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
@@ -39,11 +40,11 @@ public class DoorController : MonoBehaviour
         if (gameObject.name.Contains("Green") && Input.GetKeyDown(KeyCode.G)) Destroy(gameObject);
     }
 
-         private void OnTriggerEnter(Collider other)
+         private void OnTriggerEnter(Collider collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene(1);
         }
     }
 }

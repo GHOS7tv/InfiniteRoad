@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 2547534258618585363}
   m_Layer: 6
   m_Name: RedDoor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,4 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93506c172a5459e44a6ba8070ee75550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorController
-  Speed: 1
+  baseSpeed: 8
+  acceleration: 0.2
+  maxSpeed: 25
