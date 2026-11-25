@@ -143,3 +143,11 @@ crashlytics-build.properties
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+/Library
+/Library
+/Library/Bee/artifacts/1900b0aE.dag/post-processed
+/Library/Bee/artifacts/1900b0aE.dag
+/Library/Bee/artifacts
+/Library
+/Library
+/Logs
